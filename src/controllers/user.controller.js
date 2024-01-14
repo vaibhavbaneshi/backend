@@ -116,6 +116,7 @@ const loginUser = asyncHandler( async (req, res) => {
     }
 
     const isPasswordValid = await user.isPasswordCorrect(password)
+    // console.log(isPasswordValid);
 
     if(!isPasswordValid) {
         throw new ApiError(401, "Invalid user credential")
@@ -132,7 +133,7 @@ const loginUser = asyncHandler( async (req, res) => {
 
     return res
             .status(200)
-            .cookie("accesToken", accessToken, options)
+            .cookie("accessToken", accessToken, options)
             .cookie("refreshToken", refreshToken, options)
             .json(
                 new ApiResponse(
